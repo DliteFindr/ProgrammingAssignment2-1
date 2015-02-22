@@ -1,15 +1,33 @@
-## Put comments here that give an overall description of what your
-## functions do
+## These functions take advantage of scoping rules
+## where results are kept in the function environment
 
-## Write a short comment describing this function
+## This function makes a matrix object to be cached
 
-makeCacheMatrix <- function(x = matrix()) {
-
+makeCacheMatrix <- function(x = matrix()) {       ## function params
+        m <- NULL                                 ## resetting vari "m"
+        set <- function(y) {                      ## Undefinde function
+                x <<- y
+                m <<- NULL
+        }
+        get <- function() x                       ## Calling & setting 
+        setmatrix <- function(matrix) m <<- matrix   ## variables in cache
+        getmatrix <- function() m
+        list(set = set, get = get,
+             setmatrix = setmatrix,
+             getmatrix = getmatrix)
 }
 
 
-## Write a short comment describing this function
+## This function computes the inverse of a matrix from makeCacheMatrix
 
-cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+cacheSolve <- function(x, ...) {         ## setting function param
+        m <- x$getmatrix()               ## retieving matrix
+        if(!is.null(m)) {                ## checking to see if there's a matrix
+                message("getting cached data")
+                return(m)
+        }
+        data <- x$get()                  ## getting matrix
+        m <- solve(data, ...)            ## calc inverse of matrix
+        x$setmatrix(m)                   
+        m                                ## output
 }
