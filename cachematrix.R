@@ -12,9 +12,11 @@ makeCacheMatrix <- function(x = matrix()) {       ## function params
         get <- function() x                       ## Calling & setting 
         setmatrix <- function(matrix) m <<- matrix   ## variables in cache
         getmatrix <- function() m
+        
         list(set = set, get = get,
              setmatrix = setmatrix,
-             getmatrix = getmatrix)
+             getmatrix = getmatrix)               ## resetting vaiables as needed
+
 }
 
 
