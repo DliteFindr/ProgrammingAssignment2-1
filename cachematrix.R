@@ -1,7 +1,7 @@
 ## These functions take advantage of scoping rules
 ## where results are kept in the function environment
 
-## This function makes a matrix object to be cached
+## This function takes a matrix object to be cached
 
 makeCacheMatrix <- function(x = matrix()) {       ## function params
         m <- NULL                                 ## resetting vari "m"
